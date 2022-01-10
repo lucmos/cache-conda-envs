@@ -5,7 +5,7 @@ on: push
 env:
   CACHE_NUMBER: 0  # increase to reset cache manually
   CONDA_ENV_FILE: './environment.yaml'
-  CONDA_ENV_NAME: "my-env"
+  CONDA_ENV_NAME: 'my-env'
   
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
         include:
           - os: ubuntu-20.04
             label: linux-64
-            prefix: /usr/share/miniconda3/envs/${{ CONDA_ENV_NAME }}
+            prefix: /usr/share/miniconda3/envs/${{ env.CONDA_ENV_NAME }}
 
 #           - os: macos-latest
 #             label: osx-64
