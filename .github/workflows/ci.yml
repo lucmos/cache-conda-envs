@@ -57,18 +57,21 @@ jobs:
         with:
           path: ${{ matrix.prefix }}
           key: ${{ matrix.label }}-conda-${{ hashFiles('environment.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
-        id: cache
+        id: conda_cache
 
       - uses: actions/cache@v2
         with:
           path: ~/.cache/pip
           key: ${{ matrix.label }}-pip-${{ hashFiles('environment.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
-        id: cache
 
-      - name: Update environment
+      - name: Update conda environment
         run: mamba env update -n my-env -f environment.yml
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.conda_cache.outputs.cache-hit != 'true'
 
+      - name: Update pip environment
+        shell: bash -l {0}
+        run: pip install -e ".[dev]"
+        
       - name: Run tests
         shell: bash -l {0}
         run: pytest ./tests
