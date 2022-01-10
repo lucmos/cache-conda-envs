@@ -4,7 +4,7 @@ on: push
 
 env:
   CACHE_NUMBER: 0  # increase to reset cache manually
-  CONDA_ENV_FILE: './environment.yaml'
+  CONDA_ENV_FILE: './environment.yml'
   CONDA_ENV_NAME: 'my-env'
   
 jobs:
