@@ -1,0 +1,8 @@
+[build-system]
+requires = ["setuptools>=45.0", "setuptools_scm[toml]>=6.3.1", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "src/bug_setuptools_scm/_version.py"
+write_to_template = '__version__ = "{version}"'
+
