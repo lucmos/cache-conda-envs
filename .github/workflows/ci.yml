@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        PYTHON_VERSION: ['3.7', '3.8', '3.9']
+        python-version: ['3.7', '3.8', '3.9']
         include:
           - os: ubuntu-latest
             label: linux-64
@@ -24,16 +24,17 @@ jobs:
 #             label: win-64
 #             prefix: C:\Miniconda3\envs\my-env
 
-    name: ${{ matrix.label }}
+    name: ${{ matrix.label }}-py${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
+    
     steps:
       - uses: actions/checkout@v2
       
       # Remove the python version pin from the env.yml which could be inconsistent
-      - name: Remove explicit python version in env.yml
+      - name: Remove explicit python version in environment.yml
         shell: bash -l {0}
         run: |
-          sed -i 's/python=.*/python=/' env.yml
+          sed -i 's/python=.*/python=/' environment.yml
 
       - name: Setup Mambaforge
         uses: conda-incubator/setup-miniconda@v2
@@ -41,7 +42,7 @@ jobs:
             miniforge-variant: Mambaforge
             miniforge-version: latest
             activate-environment: my-env
-            python-version: ${{ matrix.PYTHON_VERSION }}
+            python-version: ${{ matrix.python-version }}
             use-mamba: true
 
       - name: Set cache date
@@ -50,13 +51,13 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ matrix.prefix }}
-          key: ${{ matrix.label }}-conda-${{ hashFiles('environment.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+          key: ${{ matrix.label }}-${{ matrix.python-version }}-conda-${{ hashFiles('environment.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
         id: conda_cache
 
       - uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ matrix.label }}-pip-${{ hashFiles('environment.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+          key: ${{ matrix.label }}-${{ matrix.python-version }}-pip-${{ hashFiles('environment.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
 
       - name: Update conda environment
         run: mamba env update -n my-env -f environment.yml
