@@ -3,7 +3,7 @@ name: Test Suite
 on: push
 
 env:
-  CACHE_NUMBER: 0  # increase to reset cache manually
+  CACHE_NUMBER: 1  # increase to reset cache manually
   CONDA_ENV_FILE: './environment.yml'
   CONDA_ENV_NAME: 'my-env'
 
@@ -37,7 +37,7 @@ jobs:
       - name: Remove explicit python version from the environment
         shell: bash -l {0}
         run: |
-          sed -i '/^python=.*/d' ${{ env.CONDA_ENV_FILE }}
+          sed -Ei '/^\s*-?\s*python\s*([#=].*)?$/d' ${{ env.CONDA_ENV_FILE }}
           cat  ${{ env.CONDA_ENV_FILE }}
 
       - name: Setup Mambaforge

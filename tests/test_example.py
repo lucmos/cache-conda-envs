@@ -1,5 +1,7 @@
 import pytest
 
+def test_import_conda_dependency():
+    import altair
 
 def test_add():
     assert 4 + 8 == 12
