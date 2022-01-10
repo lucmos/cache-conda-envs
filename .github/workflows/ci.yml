@@ -72,11 +72,11 @@ jobs:
         run: mamba env update -n ${{ env.CONDA_ENV_NAME }} -f ${{ env.CONDA_ENV_FILE }}
         if: steps.conda_cache.outputs.cache-hit != 'true'
 
-      # Update pip env whether or not there was a conda cache hit
-      - name: Update pip environment
-        shell: bash -l {0}
-        run: pip install -e ".[dev]"
-        if: steps.conda_cache.outputs.cache-hit == 'true'
+#      # Update pip env whether or not there was a conda cache hit
+#      - name: Update pip environment
+#        shell: bash -l {0}
+#        run: pip install -e ".[dev]"
+#        if: steps.conda_cache.outputs.cache-hit == 'true'
 
       - run: pip3 list
         shell: bash -l {0}
