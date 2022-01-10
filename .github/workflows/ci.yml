@@ -18,6 +18,10 @@ env:
 jobs:
   build:
 
+    defaults:
+      run:
+        shell: bash -l {0}
+
     strategy:
       matrix:
         include:
