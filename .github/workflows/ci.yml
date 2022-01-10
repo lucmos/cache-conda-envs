@@ -71,7 +71,6 @@ jobs:
         shell: bash -l {0}
 
       - run: python -c "import bug_setuptools_scm; print(bug_setuptools_scm.__version__)"
-        shell: bash -l {0}
 
       - run: mamba info
       - run: mamba list
