@@ -68,6 +68,7 @@ jobs:
         run: pytest ./tests
 
       - run: pip3 list
+        shell: bash -l {0}
       - run: mamba info
       - run: mamba list
       - run: mamba config --show
