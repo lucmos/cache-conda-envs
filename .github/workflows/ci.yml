@@ -37,7 +37,7 @@ jobs:
 #             label: win-64
 #             prefix: C:\Miniconda3\envs\$CONDA_ENV_NAME
 
-    name: ${{ matrix.label }}
+    name: ${{ matrix.label }}-${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
