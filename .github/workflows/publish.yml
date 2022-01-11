@@ -37,10 +37,12 @@ jobs:
       - name: echo conda prefix
         run: echo ${{ env.PY_PREFIX }}
 
+      # extract the first two digits from the release note
       - name: Set release notes tag
         run: |
           export RELEASE_TAG_VERSION=${{ github.event.release.tag_name }}
-          echo "RELEASE_TAG_VERSION=${RELEASE_TAG_VERSION:1}" >> $GITHUB_ENV
+          echo "RELEASE_TAG_VERSION=${RELEASE_TAG_VERSION%.*}">> $GITHUB_ENV
+
       - name: Echo release notes tag
         run: |
           echo "${RELEASE_TAG_VERSION}"
