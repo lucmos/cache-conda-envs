@@ -41,6 +41,10 @@ jobs:
         run: |
           export RELEASE_TAG_VERSION=${{ github.event.release.tag_name }}
           echo "RELEASE_TAG_VERSION=${RELEASE_TAG_VERSION:1}" >> $GITHUB_ENV
+      - name: Echo release notes tag
+        run: |
+          export RELEASE_TAG_VERSION=${{ github.event.release.tag_name }}
+          echo "${RELEASE_TAG_VERSION}"
 
       - uses: actions/checkout@v2
 
