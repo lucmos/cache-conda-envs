@@ -13,7 +13,7 @@ on:
     - cron: '0 0 * * *'
 
 env:
-  CACHE_NUMBER: 14  # increase to reset cache manually
+  CACHE_NUMBER: 15  # increase to reset cache manually
   CONDA_ENV_FILE: './environment.yml'
   CONDA_ENV_NAME: 'my-env'
 
@@ -46,7 +46,7 @@ jobs:
       - name: Remove explicit python version from the environment
         shell: bash -l {0}
         run: |
-          sed -Ei 's/\s*python\s*([#=].*)?$/ python=${{ matrix.python-version }}/' ${{ env.CONDA_ENV_FILE }}
+          sed -Ei '/^\s*-?\s*python\s*([#=].*)?$/d' ${{ env.CONDA_ENV_FILE }}
           cat  ${{ env.CONDA_ENV_FILE }}
 
       - name: Setup Mambaforge
@@ -55,6 +55,7 @@ jobs:
             miniforge-variant: Mambaforge
             miniforge-version: latest
             activate-environment: my-env
+            python-version: ${{ matrix.python-version }}
             use-mamba: true
 
 #       # Ensure the hack for the python version worked
@@ -64,9 +65,6 @@ jobs:
 #          echo "Installed Python: $(python --version)"
 #          echo "Expected: ${{ matrix.python-version  }}"
 #          python --version | grep "Python ${{ matrix.python-version }}"
-
-      - name: Set cache date
-        run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
       - uses: actions/cache@v2
         with:
