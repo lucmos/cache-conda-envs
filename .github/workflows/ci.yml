@@ -46,7 +46,8 @@ jobs:
       - name: Remove explicit python version from the environment
         shell: bash -l {0}
         run: |
-          sed -i 's/python=.*/python=/' ${{ env.CONDA_ENV_FILE }}
+          sed -Ei '/^\s*-?\s*python\s*([#=].*)?$/d' ${{ env.CONDA_ENV_FILE }}
+          cat  ${{ env.CONDA_ENV_FILE }}
 
       - name: Setup Mambaforge
         uses: conda-incubator/setup-miniconda@v2
