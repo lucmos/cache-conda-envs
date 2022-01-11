@@ -73,7 +73,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ~/.cache/pre-commit
-          key: ${{ matrix.label }}-pre-commit-${{ matrix.python-version }}-${{ env.CACHE_NUMBER }}-${{ env.PY_CONDA_ENV_NAME }}-${{ hashFiles(env.CONDA_ENV_FILE) }}-${{hashFiles('./setup.cfg') }}
+          key: ${{ matrix.label }}-pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}-${{ matrix.python-version }}-${{ env.CACHE_NUMBER }}-${{ env.PY_CONDA_ENV_NAME }}-${{ hashFiles(env.CONDA_ENV_FILE) }}-${{hashFiles('./setup.cfg') }}
 
       # Ensure the hack for the python version worked
       - name: Ensure we have the right Python
