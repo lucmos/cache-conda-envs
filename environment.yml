@@ -4,6 +4,9 @@ channels:
   - defaults
 
 dependencies:
+  - python=3.8
+  - altair
+  - pytest =6
   - pip
   - pip:
     - -e .[dev]
