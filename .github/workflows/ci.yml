@@ -15,7 +15,7 @@ jobs:
       matrix:
         python-version: ['3.7', '3.8', '3.9']
         include:
-          - os: ubuntu-latest
+          - os: ubuntu-20.04
             label: linux-64
             prefix: /usr/share/miniconda3/envs/
 
@@ -110,9 +110,9 @@ jobs:
 #        shell: bash -l {0}
 #        run: |
 #          pre-commit install
-#          pre-commit run --all-files
+#          pre-commit run -v --all-files --show-diff-on-failure
 
       - name: Test with pytest
         shell: bash -l {0}
         run: |
-          pytest
+          pytest -v
