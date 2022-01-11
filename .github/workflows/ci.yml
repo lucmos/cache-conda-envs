@@ -46,7 +46,7 @@ jobs:
             miniforge-variant: Mambaforge
             miniforge-version: latest
             activate-environment: ${{ env.CONDA_ENV_NAME }}
-            python-version: ${{ matrix.python-version }}
+#            python-version: ${{ matrix.python-version }}
             use-mamba: true
 
       - uses: actions/cache@v2
