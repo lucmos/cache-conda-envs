@@ -75,7 +75,7 @@ jobs:
         shell: bash -l {0}
         run: |
           echo "Installed Python: $(python --version)"
-          echo "Expected: ${{ matrix.PYTHON_VERSION }}"
+          echo "Expected: ${{ matrix.python-version }}"
           python --version | grep "Python ${{ matrix.python-version }}"
 
       - name: Update conda environment
@@ -98,7 +98,7 @@ jobs:
         shell: bash -l {0}
         run: |
           echo "Installed Python: $(python --version)"
-          echo "Expected: ${{ matrix.PYTHON_VERSION }}"
+          echo "Expected: ${{ matrix.python-version }}"
           python --version | grep "Python ${{ matrix.python-version }}"
 
 #      - name: Run pre-commits
