@@ -46,7 +46,7 @@ jobs:
       - name: Remove explicit python version from the environment
         shell: bash -l {0}
         run: |
-          sed -Ei '/^\s*-?\s*python\s*([#=].*)?$/d' ${{ env.CONDA_ENV_FILE }}
+          sed -Ei 's/\s*python\s*([#=].*)?$/python=${{ matrix.python-version }}"/' ${{ env.CONDA_ENV_FILE }}
           cat  ${{ env.CONDA_ENV_FILE }}
 
       - name: Setup Mambaforge
@@ -55,7 +55,6 @@ jobs:
             miniforge-variant: Mambaforge
             miniforge-version: latest
             activate-environment: my-env
-            python-version: ${{ matrix.python-version }}
             use-mamba: true
 
        # Ensure the hack for the python version worked
