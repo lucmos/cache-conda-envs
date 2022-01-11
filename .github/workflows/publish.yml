@@ -45,15 +45,6 @@ jobs:
         run: |
           echo "${RELEASE_TAG_VERSION}"
 
-      # TODO: remove
-      - name: Pin release notes tag
-        run: |
-          export RELEASE_TAG_VERSION=0.2
-          echo "RELEASE_TAG_VERSION=${RELEASE_TAG_VERSION}" >> $GITHUB_ENV
-      - name: Echo release notes tag
-        run: |
-          echo "${RELEASE_TAG_VERSION}"
-
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0

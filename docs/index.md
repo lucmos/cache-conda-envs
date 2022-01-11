@@ -5,7 +5,7 @@ hide:
 ---
 
 
-# NN Template
+# NN Template 0.3.0
 
 <p align="center">
     <a href="https://pytorch.org/get-started/locally/"><img alt="PyTorch" src="https://img.shields.io/badge/-PyTorch-red?logo=pytorch&labelColor=gray"></a>
