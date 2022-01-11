@@ -33,12 +33,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Remove the python version pin from the env.yml which could be inconsistent
-      - name: Remove explicit python version from the environment
-        shell: bash -l {0}
-        run: |
-          sed -Ei '/^\s*-?\s*python\s*([#=].*)?$/d' ${{ env.CONDA_ENV_FILE }}
-          cat  ${{ env.CONDA_ENV_FILE }}
+#      # Remove the python version pin from the env.yml which could be inconsistent
+#      - name: Remove explicit python version from the environment
+#        shell: bash -l {0}
+#        run: |
+#          sed -Ei '/^\s*-?\s*python\s*([#=].*)?$/d' ${{ env.CONDA_ENV_FILE }}
+#          cat  ${{ env.CONDA_ENV_FILE }}
 
       - name: Setup Mambaforge
         uses: conda-incubator/setup-miniconda@v2
@@ -55,18 +55,18 @@ jobs:
           key: ${{ matrix.label }}-conda-${{ matrix.python-version }}-${{ env.CACHE_NUMBER }}-${{ hashFiles(env.CONDA_ENV_FILE) }}-${{hashFiles('./setup.cfg') }}
         id: conda_cache
 
-      - uses: actions/cache@v2
-        with:
-          path: ~/.cache/pip
-          key: ${{ matrix.label }}-pip-${{ matrix.python-version }}-${{ env.CACHE_NUMBER }}-${{ hashFiles(env.CONDA_ENV_FILE) }}-${{hashFiles('./setup.cfg') }}
+#      - uses: actions/cache@v2
+#        with:
+#          path: ~/.cache/pip
+#          key: ${{ matrix.label }}-pip-${{ matrix.python-version }}-${{ env.CACHE_NUMBER }}-${{ hashFiles(env.CONDA_ENV_FILE) }}-${{hashFiles('./setup.cfg') }}
 
-       # Ensure the hack for the python version worked
-      - name: Ensure we have the right Python
-        shell: bash -l {0}
-        run: |
-          echo "Installed Python: $(python --version)"
-          echo "Expected: ${{ matrix.PYTHON_VERSION }}"
-          python --version | grep "Python ${{ matrix.python-version }}"
+#       # Ensure the hack for the python version worked
+#      - name: Ensure we have the right Python
+#        shell: bash -l {0}
+#        run: |
+#          echo "Installed Python: $(python --version)"
+#          echo "Expected: ${{ matrix.PYTHON_VERSION }}"
+#          python --version | grep "Python ${{ matrix.python-version }}"
 
       - name: Update conda environment
         run: mamba env update -n ${{ env.CONDA_ENV_NAME }} -f ${{ env.CONDA_ENV_FILE }}
@@ -78,18 +78,18 @@ jobs:
 #        run: pip install -e ".[dev]"
 #        if: steps.conda_cache.outputs.cache-hit == 'true'
 
-      - run: pip3 list
-        shell: bash -l {0}
-      - run: mamba info
-      - run: mamba list
-
-       # Ensure the hack for the python version worked
-      - name: Ensure we have the right Python
-        shell: bash -l {0}
-        run: |
-          echo "Installed Python: $(python --version)"
-          echo "Expected: ${{ matrix.PYTHON_VERSION }}"
-          python --version | grep "Python ${{ matrix.python-version }}"
+#      - run: pip3 list
+#        shell: bash -l {0}
+#      - run: mamba info
+#      - run: mamba list
+#
+#       # Ensure the hack for the python version worked
+#      - name: Ensure we have the right Python
+#        shell: bash -l {0}
+#        run: |
+#          echo "Installed Python: $(python --version)"
+#          echo "Expected: ${{ matrix.PYTHON_VERSION }}"
+#          python --version | grep "Python ${{ matrix.python-version }}"
 
 #      - name: Run pre-commits
 #        shell: bash -l {0}
