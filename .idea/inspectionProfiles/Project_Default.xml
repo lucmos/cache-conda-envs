@@ -1,0 +1,68 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyClassicStyleClassInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyMissingTypeHintsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="m_onlyWhenTypesAreKnown" value="false" />
+    </inspection_tool>
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="41">
+            <item index="0" class="java.lang.String" itemvalue="torch" />
+            <item index="1" class="java.lang.String" itemvalue="coverage" />
+            <item index="2" class="java.lang.String" itemvalue="scipy" />
+            <item index="3" class="java.lang.String" itemvalue="pytest" />
+            <item index="4" class="java.lang.String" itemvalue="python-dotenv" />
+            <item index="5" class="java.lang.String" itemvalue="awscli" />
+            <item index="6" class="java.lang.String" itemvalue="click" />
+            <item index="7" class="java.lang.String" itemvalue="flake8" />
+            <item index="8" class="java.lang.String" itemvalue="mlflow" />
+            <item index="9" class="java.lang.String" itemvalue="tensorboard" />
+            <item index="10" class="java.lang.String" itemvalue="imageio" />
+            <item index="11" class="java.lang.String" itemvalue="Sphinx" />
+            <item index="12" class="java.lang.String" itemvalue="future" />
+            <item index="13" class="java.lang.String" itemvalue="gym" />
+            <item index="14" class="java.lang.String" itemvalue="pytorch-lightning" />
+            <item index="15" class="java.lang.String" itemvalue="scikit-learn" />
+            <item index="16" class="java.lang.String" itemvalue="wandb" />
+            <item index="17" class="java.lang.String" itemvalue="fire" />
+            <item index="18" class="java.lang.String" itemvalue="torchvision" />
+            <item index="19" class="java.lang.String" itemvalue="jupyter" />
+            <item index="20" class="java.lang.String" itemvalue="einops" />
+            <item index="21" class="java.lang.String" itemvalue="dvc" />
+            <item index="22" class="java.lang.String" itemvalue="hydra-core" />
+            <item index="23" class="java.lang.String" itemvalue="scikit-image" />
+            <item index="24" class="java.lang.String" itemvalue="numba" />
+            <item index="25" class="java.lang.String" itemvalue="networkx" />
+            <item index="26" class="java.lang.String" itemvalue="python-utils" />
+            <item index="27" class="java.lang.String" itemvalue="streamlit" />
+            <item index="28" class="java.lang.String" itemvalue="plyfile" />
+            <item index="29" class="java.lang.String" itemvalue="progressbar2" />
+            <item index="30" class="java.lang.String" itemvalue="pandas" />
+            <item index="31" class="java.lang.String" itemvalue="tqdm" />
+            <item index="32" class="java.lang.String" itemvalue="robust-laplacian" />
+            <item index="33" class="java.lang.String" itemvalue="matplotlib" />
+            <item index="34" class="java.lang.String" itemvalue="urllib3" />
+            <item index="35" class="java.lang.String" itemvalue="torch-geometric" />
+            <item index="36" class="java.lang.String" itemvalue="stqdm" />
+            <item index="37" class="java.lang.String" itemvalue="pydrive2" />
+            <item index="38" class="java.lang.String" itemvalue="hydra-joblib-launcher" />
+            <item index="39" class="java.lang.String" itemvalue="torchmetrics" />
+            <item index="40" class="java.lang.String" itemvalue="pyDeprecate" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="matplotlib.axes._axes.Axes.set_zlim" />
+          <option value="env_vars" />
+          <option value="text" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
