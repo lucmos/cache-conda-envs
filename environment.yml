@@ -8,5 +8,5 @@ dependencies:
   - altair
   - pytest =6
   - pip
-  - pip:
-    - -e .[dev]
+#  - pip:
+#    - -e .[dev]
