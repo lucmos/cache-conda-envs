@@ -13,7 +13,7 @@ on:
     - cron: '0 0 * * *'
 
 env:
-  CACHE_NUMBER: 13  # increase to reset cache manually
+  CACHE_NUMBER: 14  # increase to reset cache manually
   CONDA_ENV_FILE: './environment.yml'
   CONDA_ENV_NAME: 'my-env'
 
@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.9']
+        python-version: ['3.8', '3.9']
         include:
           - os: ubuntu-latest
             label: linux-64
