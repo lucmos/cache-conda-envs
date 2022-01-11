@@ -55,6 +55,8 @@ jobs:
           echo "${RELEASE_TAG_VERSION}"
 
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       # Remove the python version pin from the env.yml which could be inconsistent
       - name: Remove explicit python version from the environment
@@ -135,5 +137,4 @@ jobs:
         run: |
           git config user.name ci-bot
           git config user.email ci-bot@example.com
-          git fetch origin gh-pages --depth=1
-          mike deploy -u ${RELEASE_TAG_VERSION} latest --push
+          mike deploy --push --rebase --update-aliases ${RELEASE_TAG_VERSION} latest
