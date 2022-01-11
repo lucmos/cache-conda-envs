@@ -133,4 +133,7 @@ jobs:
       - name: Build docs website
         shell: bash -l {0}
         run: |
+          git config user.name ci-bot
+          git config user.email ci-bot@example.com
+          git fetch origin gh-pages --depth=1
           mike deploy -u ${RELEASE_TAG_VERSION} latest --push
