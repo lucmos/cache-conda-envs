@@ -134,4 +134,3 @@ jobs:
         shell: bash -l {0}
         run: |
           mike deploy -u ${RELEASE_TAG_VERSION} latest --push
-
