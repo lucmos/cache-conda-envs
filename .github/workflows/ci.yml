@@ -3,7 +3,7 @@ name: Test Suite
 on: push
 
 env:
-  CACHE_NUMBER: 11  # increase to reset cache manually
+  CACHE_NUMBER: 12  # increase to reset cache manually
   CONDA_ENV_FILE: './environment.yml'
   CONDA_ENV_NAME: 'my-env'
 
