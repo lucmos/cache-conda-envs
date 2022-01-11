@@ -27,7 +27,7 @@ jobs:
         include:
           - os: ubuntu-latest
             label: linux-64
-            prefix: /usr/share/miniconda3/envs/$CONDA_ENV_NAME
+            prefix: /usr/share/miniconda3/envs/
 
 #           - os: macos-latest
 #             label: osx-64
@@ -40,6 +40,16 @@ jobs:
     name: ${{ matrix.label }}-${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Parametrize conda env name
+        run: echo "PY_CONDA_ENV_NAME=${{ env.CONDA_ENV_NAME }}-${{ matrix.python-version }}" >> $GITHUB_ENV
+      - name: echo conda env name
+        run: echo ${{ env.PY_CONDA_ENV_NAME }}
+
+      - name: Parametrize conda prefix
+        run: echo "PY_PREFIX=${{ matrix.prefix }}${{ env.PY_CONDA_ENV_NAME }}" >> $GITHUB_ENV
+      - name: echo conda prefix
+        run: echo ${{ env.PY_PREFIX }}
+
       - uses: actions/checkout@v2
 
       # Remove the python version pin from the env.yml which could be inconsistent
@@ -54,7 +64,7 @@ jobs:
         with:
             miniforge-variant: Mambaforge
             miniforge-version: latest
-            activate-environment: my-env
+            activate-environment: ${{ env.PY_CONDA_ENV_NAME }}
             python-version: ${{ matrix.python-version }}
             use-mamba: true
 
@@ -68,12 +78,12 @@ jobs:
 
       - uses: actions/cache@v2
         with:
-          path: ${{ matrix.prefix }}
-          key: ${{ matrix.label }}-conda-${{ matrix.python-version }}-${{ env.CACHE_NUMBER }}-${{ hashFiles(env.CONDA_ENV_FILE) }}-${{hashFiles('./setup.cfg') }}
+          path: ${{ env.PY_PREFIX }}
+          key: ${{ matrix.label }}-conda-${{ matrix.python-version }}-${{ env.CACHE_NUMBER }}-${{ env.PY_CONDA_ENV_NAME }}-${{ hashFiles(env.CONDA_ENV_FILE) }}-${{hashFiles('./setup.cfg') }}
         id: cache
 
       - name: Update environment
-        run: mamba env update -n my-env -f environment.yml
+        run: mamba env update -n ${{ env.PY_CONDA_ENV_NAME }} -f environment.yml
         if: steps.cache.outputs.cache-hit != 'true'
 
        # Ensure the hack for the python version worked
